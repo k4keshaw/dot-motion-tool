@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="180" viewBox="0 0 760 180" role="img" aria-label="Dot Motion Tool animated preview">
+  <rect width="760" height="180" rx="8" fill="#101010"/>
+  <g fill="#ffffff">
+    <circle cx="78" cy="78" r="5"><animate attributeName="opacity" values="0.14;1;0.14" dur="2.4s" begin="-0.00s" repeatCount="indefinite"/></circle>
+    <circle cx="108" cy="78" r="5"><animate attributeName="opacity" values="0.14;1;0.14" dur="2.4s" begin="-0.18s" repeatCount="indefinite"/></circle>
+    <circle cx="138" cy="78" r="5"><animate attributeName="opacity" values="0.14;1;0.14" dur="2.4s" begin="-0.49s" repeatCount="indefinite"/></circle>
+    <circle cx="168" cy="78" r="5"><animate attributeName="opacity" values="0.14;1;0.14" dur="2.4s" begin="-0.77s" repeatCount="indefinite"/></circle>
+    <circle cx="198" cy="78" r="5"><animate attributeName="opacity" values="0.14;1;0.14" dur="2.4s" begin="-1.08s" repeatCount="indefinite"/></circle>
+    <circle cx="228" cy="78" r="5"><animate attributeName="opacity" values="0.14;1;0.14" dur="2.4s" begin="-1.33s" repeatCount="indefinite"/></circle>
+    <circle cx="258" cy="78" r="5"><animate attributeName="opacity" values="0.14;1;0.14" dur="2.4s" begin="-1.67s" repeatCount="indefinite"/></circle>
+    <circle cx="288" cy="78" r="5"><animate attributeName="opacity" values="0.14;1;0.14" dur="2.4s" begin="-1.91s" repeatCount="indefinite"/></circle>
+    <circle cx="318" cy="78" r="5"><animate attributeName="opacity" values="0.14;1;0.14" dur="2.4s" begin="-2.16s" repeatCount="indefinite"/></circle>
+    <circle cx="348" cy="78" r="5"><animate attributeName="opacity" values="0.14;1;0.14" dur="2.4s" begin="-2.31s" repeatCount="indefinite"/></circle>
+    <circle cx="378" cy="78" r="5"><animate attributeName="opacity" values="0.14;1;0.14" dur="2.4s" begin="-2.08s" repeatCount="indefinite"/></circle>
+    <circle cx="408" cy="78" r="5"><animate attributeName="opacity" values="0.14;1;0.14" dur="2.4s" begin="-1.82s" repeatCount="indefinite"/></circle>
+    <circle cx="438" cy="78" r="5"><animate attributeName="opacity" values="0.14;1;0.14" dur="2.4s" begin="-1.54s" repeatCount="indefinite"/></circle>
+    <circle cx="468" cy="78" r="5"><animate attributeName="opacity" values="0.14;1;0.14" dur="2.4s" begin="-1.27s" repeatCount="indefinite"/></circle>
+    <circle cx="498" cy="78" r="5"><animate attributeName="opacity" values="0.14;1;0.14" dur="2.4s" begin="-0.96s" repeatCount="indefinite"/></circle>
+    <circle cx="528" cy="78" r="5"><animate attributeName="opacity" values="0.14;1;0.14" dur="2.4s" begin="-0.73s" repeatCount="indefinite"/></circle>
+    <circle cx="558" cy="78" r="5"><animate attributeName="opacity" values="0.14;1;0.14" dur="2.4s" begin="-0.42s" repeatCount="indefinite"/></circle>
+    <circle cx="588" cy="78" r="5"><animate attributeName="opacity" values="0.14;1;0.14" dur="2.4s" begin="-0.21s" repeatCount="indefinite"/></circle>
+    <circle cx="618" cy="78" r="5"><animate attributeName="opacity" values="0.14;1;0.14" dur="2.4s" begin="-0.68s" repeatCount="indefinite"/></circle>
+    <circle cx="648" cy="78" r="5"><animate attributeName="opacity" values="0.14;1;0.14" dur="2.4s" begin="-1.03s" repeatCount="indefinite"/></circle>
+
+    <circle cx="78" cy="108" r="5"><animate attributeName="opacity" values="0.14;1;0.14" dur="2.4s" begin="-1.44s" repeatCount="indefinite"/></circle>
+    <circle cx="108" cy="108" r="5"><animate attributeName="opacity" values="0.14;1;0.14" dur="2.4s" begin="-1.71s" repeatCount="indefinite"/></circle>
+    <circle cx="138" cy="108" r="5"><animate attributeName="opacity" values="0.14;1;0.14" dur="2.4s" begin="-2.03s" repeatCount="indefinite"/></circle>
+    <circle cx="168" cy="108" r="5"><animate attributeName="opacity" values="0.14;1;0.14" dur="2.4s" begin="-2.26s" repeatCount="indefinite"/></circle>
+    <circle cx="198" cy="108" r="5"><animate attributeName="opacity" values="0.14;1;0.14" dur="2.4s" begin="-2.10s" repeatCount="indefinite"/></circle>
+    <circle cx="228" cy="108" r="5"><animate attributeName="opacity" values="0.14;1;0.14" dur="2.4s" begin="-1.84s" repeatCount="indefinite"/></circle>
+    <circle cx="258" cy="108" r="5"><animate attributeName="opacity" values="0.14;1;0.14" dur="2.4s" begin="-1.58s" repeatCount="indefinite"/></circle>
+    <circle cx="288" cy="108" r="5"><animate attributeName="opacity" values="0.14;1;0.14" dur="2.4s" begin="-1.23s" repeatCount="indefinite"/></circle>
+    <circle cx="318" cy="108" r="5"><animate attributeName="opacity" values="0.14;1;0.14" dur="2.4s" begin="-0.95s" repeatCount="indefinite"/></circle>
+    <circle cx="348" cy="108" r="5"><animate attributeName="opacity" values="0.14;1;0.14" dur="2.4s" begin="-0.62s" repeatCount="indefinite"/></circle>
+    <circle cx="378" cy="108" r="5"><animate attributeName="opacity" values="0.14;1;0.14" dur="2.4s" begin="-0.37s" repeatCount="indefinite"/></circle>
+    <circle cx="408" cy="108" r="5"><animate attributeName="opacity" values="0.14;1;0.14" dur="2.4s" begin="-0.14s" repeatCount="indefinite"/></circle>
+    <circle cx="438" cy="108" r="5"><animate attributeName="opacity" values="0.14;1;0.14" dur="2.4s" begin="-0.46s" repeatCount="indefinite"/></circle>
+    <circle cx="468" cy="108" r="5"><animate attributeName="opacity" values="0.14;1;0.14" dur="2.4s" begin="-0.79s" repeatCount="indefinite"/></circle>
+    <circle cx="498" cy="108" r="5"><animate attributeName="opacity" values="0.14;1;0.14" dur="2.4s" begin="-1.13s" repeatCount="indefinite"/></circle>
+    <circle cx="528" cy="108" r="5"><animate attributeName="opacity" values="0.14;1;0.14" dur="2.4s" begin="-1.47s" repeatCount="indefinite"/></circle>
+    <circle cx="558" cy="108" r="5"><animate attributeName="opacity" values="0.14;1;0.14" dur="2.4s" begin="-1.77s" repeatCount="indefinite"/></circle>
+    <circle cx="588" cy="108" r="5"><animate attributeName="opacity" values="0.14;1;0.14" dur="2.4s" begin="-2.04s" repeatCount="indefinite"/></circle>
+    <circle cx="618" cy="108" r="5"><animate attributeName="opacity" values="0.14;1;0.14" dur="2.4s" begin="-2.29s" repeatCount="indefinite"/></circle>
+    <circle cx="648" cy="108" r="5"><animate attributeName="opacity" values="0.14;1;0.14" dur="2.4s" begin="-2.11s" repeatCount="indefinite"/></circle>
+  </g>
+</svg>

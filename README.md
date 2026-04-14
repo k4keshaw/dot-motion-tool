@@ -1,5 +1,7 @@
 # Dot Motion Tool
 
+![Dot Motion Tool animated preview](assets/preview.svg)
+
 This project creates a configurable dot animation that can be exported as CSS or a React component for use inside a design system.
 
 ## Files
