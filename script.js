@@ -1,164 +1,317 @@
-const cfg = {
-  cols: 10,
-  rows: 10,
+﻿const cfg = {
+  cols: 20,
+  rows: 2,
   dotSize: 10,
+  gridScale: 100,
   randomSize: false,
   dotColor: "#ffffff",
-  bgColor: "#000000",
-  loopDuration: 5,
+  speed: 5,
   playing: true,
-  t: 0,
-  mode: "wave"
+  t: 0
 };
 
-/* BUILD GRID */
+const els = {
+  grid: document.getElementById("grid"),
+  cols: document.getElementById("cols"),
+  rows: document.getElementById("rows"),
+  scale: document.getElementById("scale"),
+  dotSize: document.getElementById("dotSize"),
+  speed: document.getElementById("speed"),
+  randomSize: document.getElementById("randomSize"),
+  dotColor: document.getElementById("dotColor"),
+  playPause: document.getElementById("playPause"),
+  exportCSS: document.getElementById("exportCSS"),
+  exportReact: document.getElementById("exportReact"),
+  colsVal: document.getElementById("colsVal"),
+  rowsVal: document.getElementById("rowsVal"),
+  scaleVal: document.getElementById("scaleVal"),
+  dotSizeVal: document.getElementById("dotSizeVal"),
+  speedVal: document.getElementById("speedVal")
+};
+
+function syncLabels() {
+  els.colsVal.textContent = cfg.cols;
+  els.rowsVal.textContent = cfg.rows;
+  els.scaleVal.textContent = `${cfg.gridScale}%`;
+  els.dotSizeVal.textContent = cfg.dotSize;
+  els.speedVal.textContent = cfg.speed;
+}
+
+function applyGridScale() {
+  els.grid.style.transform = `scale(${cfg.gridScale / 100})`;
+}
+
 function buildGrid() {
-  const g = document.getElementById("grid");
-  g.innerHTML = "";
-  g.style.gridTemplateColumns =
-    `repeat(${cfg.cols}, ${cfg.dotSize + 6}px)`;
+  els.grid.innerHTML = "";
+  els.grid.style.gridTemplateColumns = `repeat(${cfg.cols}, ${cfg.dotSize + 6}px)`;
+  applyGridScale();
 
-  for (let i = 0; i < cfg.rows * cfg.cols; i++) {
-    const d = document.createElement("div");
-    d.className = "dot";
-
-    let size = cfg.randomSize
-      ? Math.random() * cfg.dotSize + 4
+  for (let i = 0; i < cfg.cols * cfg.rows; i++) {
+    const dot = document.createElement("span");
+    const size = cfg.randomSize
+      ? cfg.dotSize * (0.65 + seededNoise(i, 0) * 0.7)
       : cfg.dotSize;
 
-    d.style.width = size + "px";
-    d.style.height = size + "px";
-    d.style.background = cfg.dotColor;
+    dot.className = "dot";
+    dot.style.width = `${size}px`;
+    dot.style.height = `${size}px`;
+    dot.style.backgroundColor = cfg.dotColor;
 
-    g.appendChild(d);
+    els.grid.appendChild(dot);
   }
 }
-buildGrid();
 
-/* PATTERN ENGINE */
-function getOpacity(c, r, t) {
-  const cx = c / (cfg.cols - 1);
-  const cy = r / (cfg.rows - 1);
-  const dx = cx - 0.5;
-  const dy = cy - 0.5;
-
-  let v = 0;
-
-  switch (cfg.mode) {
-    case "wave":
-      v = Math.sin(t - cx * 6 - dy * 6);
-      break;
-    case "ripple":
-      v = Math.sin(t - Math.sqrt(dx * dx + dy * dy) * 10);
-      break;
-    case "diagonal":
-      v = Math.sin(t - (cx + cy) * 6);
-      break;
-    case "noise":
-      v = Math.sin(cx * 10 + t) * Math.cos(cy * 10 - t);
-      break;
-    case "pulse":
-      v = Math.sin(t * 2) * Math.exp(-(dx * dx + dy * dy) * 10);
-      break;
-    case "spiral":
-      v = Math.sin(t - Math.atan2(dy, dx) * 4);
-      break;
-  }
-
-  return 0.1 + ((v + 1) / 2) * 0.9;
+function seededNoise(x, y) {
+  return fract(Math.sin(x * 127.1 + y * 311.7) * 43758.5453);
 }
 
-/* ANIMATION */
+function smoothNoise(x, y) {
+  const x0 = Math.floor(x);
+  const y0 = Math.floor(y);
+  const xf = smoothStep(fract(x));
+  const yf = smoothStep(fract(y));
+  const top = lerp(seededNoise(x0, y0), seededNoise(x0 + 1, y0), xf);
+  const bottom = lerp(seededNoise(x0, y0 + 1), seededNoise(x0 + 1, y0 + 1), xf);
+
+  return lerp(top, bottom, yf);
+}
+
+function getOpacity(col, row, time) {
+  const noise = smoothNoise(col * 0.8 + time, row * 1.6 + time * 0.35);
+  return 0.12 + noise * 0.88;
+}
+
 function tick() {
   if (cfg.playing) {
-    const dots = document.querySelectorAll(".dot");
+    const dots = els.grid.querySelectorAll(".dot");
 
-    for (let r = 0; r < cfg.rows; r++) {
-      for (let c = 0; c < cfg.cols; c++) {
-        const op = getOpacity(c, r, cfg.t);
-
-        const d = dots[r * cfg.cols + c];
-        d.style.opacity = op;
-        d.style.transform = `scale(${0.5 + op})`;
+    for (let row = 0; row < cfg.rows; row++) {
+      for (let col = 0; col < cfg.cols; col++) {
+        dots[row * cfg.cols + col].style.opacity = getOpacity(col, row, cfg.t);
       }
     }
 
-    cfg.t += 0.05;
+    cfg.t += cfg.speed * 0.01;
   }
 
   requestAnimationFrame(tick);
 }
-tick();
 
-/* MODE SWITCH */
-document.getElementById("modes").onclick = e => {
-  if (e.target.tagName === "BUTTON") {
-    cfg.mode = e.target.dataset.mode;
+function bindControls() {
+  els.cols.oninput = event => {
+    cfg.cols = Number(event.target.value);
+    syncLabels();
+    buildGrid();
+  };
 
-    document.querySelectorAll("#modes button")
-      .forEach(b => b.classList.remove("active"));
+  els.rows.oninput = event => {
+    cfg.rows = Number(event.target.value);
+    syncLabels();
+    buildGrid();
+  };
 
-    e.target.classList.add("active");
-  }
-};
+  els.scale.oninput = event => {
+    cfg.gridScale = Number(event.target.value);
+    syncLabels();
+    applyGridScale();
+  };
 
-/* CONTROLS */
-document.getElementById("d").oninput = e => {
-  cfg.dotSize = +e.target.value;
-  buildGrid();
-};
+  els.dotSize.oninput = event => {
+    cfg.dotSize = Number(event.target.value);
+    syncLabels();
+    buildGrid();
+  };
 
-document.getElementById("randomSizeToggle").onchange = e => {
-  cfg.randomSize = e.target.checked;
-  buildGrid();
-};
+  els.speed.oninput = event => {
+    cfg.speed = Number(event.target.value);
+    syncLabels();
+  };
 
-document.getElementById("dotColor").oninput = e => {
-  cfg.dotColor = e.target.value;
-  buildGrid();
-};
+  els.randomSize.onchange = event => {
+    cfg.randomSize = event.target.checked;
+    buildGrid();
+  };
 
-document.getElementById("bgColor").oninput = e => {
-  document.body.style.background = e.target.value;
-};
+  els.dotColor.oninput = event => {
+    cfg.dotColor = event.target.value;
+    buildGrid();
+  };
 
-document.getElementById("randomBtn").onclick = () => {
-  cfg.cols = Math.floor(Math.random() * 10) + 5;
-  cfg.rows = Math.floor(Math.random() * 10) + 5;
-  buildGrid();
-};
+  els.playPause.onclick = () => {
+    cfg.playing = !cfg.playing;
+    els.playPause.textContent = cfg.playing ? "Pause" : "Play";
+  };
 
-document.getElementById("playPause").onclick = () => {
-  cfg.playing = !cfg.playing;
-};
-
-/* EXPORT JSON */
-document.getElementById("exportJSON").onclick = () => {
-  download("dot-config.json", JSON.stringify(cfg, null, 2));
-};
-
-/* EXPORT HTML (SHAREABLE) */
-document.getElementById("exportHTML").onclick = () => {
-  const html = `
-<!DOCTYPE html>
-<html>
-<body style="margin:0;background:${cfg.bgColor}">
-<div id="grid"></div>
-<script>
-const cfg = ${JSON.stringify(cfg)};
-${getOpacity.toString()}
-(${buildGrid.toString()})();
-<\/script>
-</body>
-</html>
-`;
-  download("dot-animation.html", html);
-};
-
-/* DOWNLOAD */
-function download(name, content) {
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(new Blob([content]));
-  a.download = name;
-  a.click();
+  els.exportCSS.onclick = () => download("dot-motion.css", createCSSExport());
+  els.exportReact.onclick = () => download("DotMotion.jsx", createReactExport());
 }
+
+function getAnimationDuration() {
+  return Math.max(0.4, 12 / cfg.speed);
+}
+
+function getExportDots() {
+  const duration = getAnimationDuration();
+  const liveDots = els.grid.querySelectorAll(".dot");
+  const dots = [];
+
+  for (let row = 0; row < cfg.rows; row++) {
+    for (let col = 0; col < cfg.cols; col++) {
+      const index = row * cfg.cols + col;
+      const size = parseFloat(liveDots[index]?.style.width) || cfg.dotSize;
+      const phase = smoothNoise(col * 0.8, row * 1.6);
+
+      dots.push({
+        size: Number(size.toFixed(2)),
+        delay: Number((-phase * duration).toFixed(3))
+      });
+    }
+  }
+
+  return dots;
+}
+
+function createMarkup() {
+  return Array.from({ length: cfg.rows * cfg.cols }, () => '  <span class="dot-motion-dot"></span>')
+    .join("\n");
+}
+
+function createCSSExport() {
+  const duration = getAnimationDuration();
+  const dotRules = getExportDots().map((dot, index) => {
+    const sizeRules = cfg.randomSize
+      ? `\n  width: ${dot.size}px;\n  height: ${dot.size}px;`
+      : "";
+
+    return `.dot-motion-dot:nth-child(${index + 1}) {${sizeRules}\n  animation-delay: ${dot.delay}s;\n}`;
+  }).join("\n\n");
+
+  return `/* Usage:
+<div class="dot-motion-grid">
+${createMarkup()}
+</div>
+*/
+
+.dot-motion-grid {
+  display: grid;
+  grid-template-columns: repeat(${cfg.cols}, ${cfg.dotSize + 6}px);
+  gap: 10px;
+  padding: 40px;
+  width: max-content;
+  background: transparent;
+  transform: scale(${cfg.gridScale / 100});
+  transform-origin: center;
+}
+
+.dot-motion-dot {
+  display: block;
+  width: ${cfg.dotSize}px;
+  height: ${cfg.dotSize}px;
+  border-radius: 50%;
+  background: ${cfg.dotColor};
+  animation: dot-motion-opacity ${duration.toFixed(3)}s ease-in-out infinite both;
+}
+
+${dotRules}
+
+@keyframes dot-motion-opacity {
+  0%, 100% {
+    opacity: 0.12;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+`;
+}
+
+function createReactExport() {
+  const duration = getAnimationDuration();
+  const dots = JSON.stringify(getExportDots(), null, 2);
+
+  return `import React from "react";
+
+const dots = ${dots};
+
+export default function DotMotion({ className = "", style }) {
+  return (
+    <div
+      className={\`dot-motion-grid \${className}\`.trim()}
+      style={style}
+      aria-hidden="true"
+    >
+      {dots.map((dot, index) => (
+        <span
+          className="dot-motion-dot"
+          key={index}
+          style={{
+            width: dot.size,
+            height: dot.size,
+            animationDelay: \`\${dot.delay}s\`
+          }}
+        />
+      ))}
+
+      <style>{\`
+        .dot-motion-grid {
+          display: grid;
+          grid-template-columns: repeat(${cfg.cols}, ${cfg.dotSize + 6}px);
+          gap: 10px;
+          padding: 40px;
+          width: max-content;
+          background: transparent;
+          transform: scale(${cfg.gridScale / 100});
+          transform-origin: center;
+        }
+
+        .dot-motion-dot {
+          display: block;
+          border-radius: 50%;
+          background: ${cfg.dotColor};
+          animation: dot-motion-opacity ${duration.toFixed(3)}s ease-in-out infinite both;
+        }
+
+        @keyframes dot-motion-opacity {
+          0%, 100% {
+            opacity: 0.12;
+          }
+
+          50% {
+            opacity: 1;
+          }
+        }
+      \`}</style>
+    </div>
+  );
+}
+`;
+}
+
+function download(name, content) {
+  const url = URL.createObjectURL(new Blob([content], { type: "text/plain" }));
+  const link = document.createElement("a");
+
+  link.href = url;
+  link.download = name;
+  link.click();
+
+  URL.revokeObjectURL(url);
+}
+
+function lerp(a, b, t) {
+  return a + (b - a) * t;
+}
+
+function smoothStep(t) {
+  return t * t * (3 - 2 * t);
+}
+
+function fract(value) {
+  return value - Math.floor(value);
+}
+
+syncLabels();
+bindControls();
+buildGrid();
+tick();

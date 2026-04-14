@@ -1,60 +1,85 @@
-* { box-sizing: border-box; }
+﻿* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
-  font-family: sans-serif;
-  background: #0b0b0b;
-  color: #fff;
+  font-family: Arial, sans-serif;
+  color: #f7f7f7;
+  background: #101010;
 }
 
 .app {
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .preview {
   flex: 1;
   display: flex;
-  justify-content: center;
   align-items: center;
-  background: #000;
+  justify-content: center;
+  overflow: hidden;
+  background: transparent;
 }
 
-#grid {
+.grid {
   display: grid;
   gap: 10px;
   padding: 40px;
+  transform-origin: center;
 }
 
 .dot {
+  display: block;
   border-radius: 50%;
-  box-shadow: 0 0 6px rgba(255,255,255,0.4);
 }
 
 .controls {
   width: 320px;
   padding: 20px;
-  background: #111;
-  border-left: 1px solid #222;
+  background: #171717;
+  border-left: 1px solid #2a2a2a;
+}
+
+h1,
+h2 {
+  margin: 0 0 12px;
+  font-size: 18px;
+}
+
+h2 {
+  margin-top: 22px;
+  font-size: 14px;
+}
+
+label {
+  display: block;
+  margin-bottom: 12px;
+}
+
+.inline-control {
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
 
 button {
-  background: #222;
+  margin: 0 6px 12px 0;
+  padding: 7px 10px;
   color: #fff;
-  border: none;
-  padding: 6px 10px;
-  margin: 3px;
+  background: #2a2a2a;
+  border: 0;
   border-radius: 6px;
   cursor: pointer;
 }
 
-button.active {
-  background: #fff;
-  color: #000;
+button:hover {
+  background: #3a3a3a;
 }
 
 input[type="range"],
 input[type="color"] {
   width: 100%;
-  margin-bottom: 10px;
+  margin-top: 6px;
 }

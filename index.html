@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -8,74 +8,62 @@
 </head>
 
 <body>
+<main class="app">
+  <section class="preview" aria-label="Dot animation preview">
+    <div id="grid" class="grid"></div>
+  </section>
 
-<div class="app">
+  <aside class="controls">
+    <h1>Dot Motion</h1>
 
-  <div class="preview">
-    <div id="grid"></div>
-  </div>
-
-  <div class="controls">
-
-    <h3>Dot Motion</h3>
-
-    <button id="randomBtn">Random ⚡</button>
-    <button id="playPause">Pause ⏸</button>
-
-    <br/><br/>
-
-    Loop <span id="loopVal">5</span>
-    <input type="range" id="loop" min="1" max="20" value="5">
-
-    <h4>Pattern</h4>
-    <div id="modes">
-      <button data-mode="wave" class="active">Wave</button>
-      <button data-mode="ripple">Ripple</button>
-      <button data-mode="diagonal">Diagonal</button>
-      <button data-mode="noise">Noise</button>
-      <button data-mode="pulse">Pulse</button>
-      <button data-mode="spiral">Spiral</button>
-    </div>
-
-    <h4>Grid</h4>
-    Cols <span id="cval">10</span>
-    <input type="range" id="c" min="1" max="20" value="10">
-
-    Rows <span id="rval">10</span>
-    <input type="range" id="r" min="1" max="20" value="10">
-
-    <h4>Dots</h4>
-    Size <span id="dval">10</span>
-    <input type="range" id="d" min="4" max="30" value="10">
+    <button id="playPause" type="button">Pause</button>
 
     <label>
-      <input type="checkbox" id="randomSizeToggle">
+      Speed <span id="speedVal">5</span>
+      <input type="range" id="speed" min="1" max="20" value="5">
+    </label>
+
+    <h2>Grid</h2>
+
+    <label>
+      Cols <span id="colsVal">20</span>
+      <input type="range" id="cols" min="15" max="20" value="20">
+    </label>
+
+    <label>
+      Rows <span id="rowsVal">2</span>
+      <input type="range" id="rows" min="1" max="8" value="2">
+    </label>
+
+    <label>
+      Scale <span id="scaleVal">100%</span>
+      <input type="range" id="scale" min="25" max="200" value="100">
+    </label>
+
+    <h2>Dots</h2>
+
+    <label>
+      Size <span id="dotSizeVal">10</span>
+      <input type="range" id="dotSize" min="4" max="30" value="10">
+    </label>
+
+    <label class="inline-control">
+      <input type="checkbox" id="randomSize">
       Random size
     </label>
 
-    <br/><br/>
-
-    Dot Color
-    <input type="color" id="dotColor" value="#ffffff">
-
-    Background
-    <input type="color" id="bgColor" value="#000000">
-
     <label>
-      <input type="checkbox" id="transparentBg">
-      Transparent
+      Dot color
+      <input type="color" id="dotColor" value="#ffffff">
     </label>
 
-    <br/><br/>
+    <h2>Download</h2>
 
-    <button id="exportJSON">Export JSON</button>
-    <button id="exportHTML">Export HTML</button>
-
-  </div>
-
-</div>
+    <button id="exportCSS" type="button">Export CSS</button>
+    <button id="exportReact" type="button">Export React</button>
+  </aside>
+</main>
 
 <script src="script.js"></script>
-
 </body>
 </html>
