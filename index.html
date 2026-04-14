@@ -23,6 +23,39 @@
       <input type="range" id="speed" min="1" max="20" value="5">
     </label>
 
+    <h2>Noise</h2>
+
+    <label>
+      Pattern
+      <select id="noiseType">
+        <option value="perlin">Perlin</option>
+        <option value="fbm">Fractal Brownian Motion</option>
+        <option value="turbulence">Turbulence</option>
+        <option value="ridged">Ridged</option>
+        <option value="cellular">Cellular</option>
+      </select>
+    </label>
+
+    <label>
+      Noise scale <span id="noiseScaleVal">100%</span>
+      <input type="range" id="noiseScale" min="25" max="300" value="100">
+    </label>
+
+    <label>
+      Min opacity <span id="minOpacityVal">12%</span>
+      <input type="range" id="minOpacity" min="0" max="100" value="12">
+    </label>
+
+    <label>
+      Max opacity <span id="maxOpacityVal">100%</span>
+      <input type="range" id="maxOpacity" min="0" max="100" value="100">
+    </label>
+
+    <label>
+      Opacity contrast <span id="opacityContrastVal">100%</span>
+      <input type="range" id="opacityContrast" min="0" max="300" value="100">
+    </label>
+
     <h2>Grid</h2>
 
     <label>
@@ -57,10 +90,17 @@
       <input type="color" id="dotColor" value="#ffffff">
     </label>
 
+    <label>
+      Background color
+      <input type="color" id="bgColor" value="#101010">
+    </label>
+
     <h2>Download</h2>
 
     <button id="exportCSS" type="button">Export CSS</button>
     <button id="exportReact" type="button">Export React</button>
+    <button id="exportSVG" type="button">Export SVG</button>
+    <button id="exportGIF" type="button">Export GIF</button>
   </aside>
 </main>
 
