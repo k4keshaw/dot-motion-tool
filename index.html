@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dot Motion Tool</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+  <div class="preview">
+    <div id="grid"></div>
+  </div>
+
+  <div class="controls">
+
+    <h3>Dot Motion</h3>
+
+    <button id="randomBtn">Random ⚡</button>
+    <button id="playPause">Pause ⏸</button>
+
+    <br/><br/>
+
+    Loop <span id="loopVal">5</span>
+    <input type="range" id="loop" min="1" max="20" value="5">
+
+    <h4>Pattern</h4>
+    <div id="modes">
+      <button data-mode="wave" class="active">Wave</button>
+      <button data-mode="ripple">Ripple</button>
+      <button data-mode="diagonal">Diagonal</button>
+      <button data-mode="noise">Noise</button>
+      <button data-mode="pulse">Pulse</button>
+      <button data-mode="spiral">Spiral</button>
+    </div>
+
+    <h4>Grid</h4>
+    Cols <span id="cval">10</span>
+    <input type="range" id="c" min="1" max="20" value="10">
+
+    Rows <span id="rval">10</span>
+    <input type="range" id="r" min="1" max="20" value="10">
+
+    <h4>Dots</h4>
+    Size <span id="dval">10</span>
+    <input type="range" id="d" min="4" max="30" value="10">
+
+    <label>
+      <input type="checkbox" id="randomSizeToggle">
+      Random size
+    </label>
+
+    <br/><br/>
+
+    Dot Color
+    <input type="color" id="dotColor" value="#ffffff">
+
+    Background
+    <input type="color" id="bgColor" value="#000000">
+
+    <label>
+      <input type="checkbox" id="transparentBg">
+      Transparent
+    </label>
+
+    <br/><br/>
+
+    <button id="exportJSON">Export JSON</button>
+    <button id="exportHTML">Export HTML</button>
+
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

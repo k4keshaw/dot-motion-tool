@@ -1,0 +1,60 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: #0b0b0b;
+  color: #fff;
+}
+
+.app {
+  display: flex;
+  height: 100vh;
+}
+
+.preview {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000;
+}
+
+#grid {
+  display: grid;
+  gap: 10px;
+  padding: 40px;
+}
+
+.dot {
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(255,255,255,0.4);
+}
+
+.controls {
+  width: 320px;
+  padding: 20px;
+  background: #111;
+  border-left: 1px solid #222;
+}
+
+button {
+  background: #222;
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  margin: 3px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button.active {
+  background: #fff;
+  color: #000;
+}
+
+input[type="range"],
+input[type="color"] {
+  width: 100%;
+  margin-bottom: 10px;
+}
